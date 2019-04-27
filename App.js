@@ -26,20 +26,53 @@ class Counter extends React.Component {
   render() {
     return (
       <>
-        <button onClick={() => this.handleMathClick("substraction", 10)}>
-          -10
-        </button>
-        <button onClick={() => this.handleMathClick("substraction")}>-1</button>
-        <button onClick={() => this.handleMathClick("reset")}>Reset</button>
-        <button onClick={() => this.handleMathClick("addition")}>+1</button>
-        <button onClick={() => this.handleMathClick("addition", 10)}>
-          +10
-        </button>
+        <MathButton
+          name="-10"
+          number={10}
+          type="substraction"
+          click={this.handleMathClick}
+        />
+
+        <MathButton
+          name="-1"
+          number={1}
+          type="substraction"
+          click={this.handleMathClick}
+        />
+
+        <MathButton 
+          name="Reset" 
+          type="reset" 
+          click={this.handleMathClick} 
+        />
+
+        <MathButton 
+          name="1" 
+          number={1} 
+          type="" 
+          click={this.handleMathClick} 
+        />
+        
+        <MathButton
+          name="10"
+          number={10}
+          type=""
+          click={this.handleMathClick}
+        />
         <h1>Liczba kliknięć: {this.state.count}</h1>
         <h1>Wynik: {this.state.result}</h1>
       </>
     );
   }
 }
+
+const MathButton = props => {
+  console.log(props);
+  return (
+    <button onClick={() => props.click(props.type, props.number)}>
+      {props.name}
+    </button>
+  );
+};
 
 ReactDOM.render(<Counter />, document.getElementById("root"));
